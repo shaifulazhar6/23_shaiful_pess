@@ -7,6 +7,36 @@ var cars_sold = 0;
 var amount = 0;
 var brandcost = new Array(72500, 23930, 31260, 43990);
 
+var questions = [
+	{
+	"qns":"___ you happy today?",
+	"no" : "1",
+	"correctAns": "c",
+	"points" : "2",
+	"choices" : [{
+		  "title": "at",
+		  "no" : "a" 
+		},
+		{
+		   "title": "was",
+		   "no" : "b" 
+		},
+		{
+		    "title": "are",
+		    "no" : "c" 
+		},
+		{
+		     "title": "were",
+		     "no" : "d" 
+		}
+	  ]
+},
+
+]
+var qnsIndex = 0;
+var selections = [];
+var currentClient = null;
+
 function newClient(){
 	
 	var count = 0;
@@ -58,6 +88,8 @@ function newClient(){
 				$dragBox.css(removeMarginStyle);
 				count--;
 				$dragBox.addClass('selected');
+				var dialogOption = { scrolling: 'no' };
+				$.fancybox.open('#mcq',dialogOption);
 			}
 		}
 		$carBoxes.droppable(options);

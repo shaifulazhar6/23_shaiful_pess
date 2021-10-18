@@ -48,6 +48,8 @@
 				</div>
 			</div>
 			<div class="page-panel" id="play">
+			
+				
 				<div id="salon">
     	<div id="clients_queue">
         	clients queue
@@ -127,6 +129,42 @@
 			<div class="page-panel" id="credits">
 				Credits Page
 			</div>
+			<div class="page-panel" id="help">
+			 Help Page
+			</div>
+			
+			<div id="mcq" style="display:none">
+				<div id="question-panel">
+					<div class="row">
+						<div class="col-12">
+							<span id="questionTitle"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="mcq-choice" id="optionA" onClick='ansBox_click("a")'>Answer A</div>
+						</div>
+						<div class="col-6">
+							<div class="mcq-choice" id="optionB" onClick='ansBox_click("b")'>Answer B</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="mcq-choice" id="optionC" onClick='ansBox_click("c")'>Answer C</div>
+						</div>
+						<div class="col-6">
+							<div class="mcq-choice" id="optionD" onClick='ansBox_click("d")'>Answer D</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<a onClick="next_qns()">
+								<img src="images/next.png" width="100" height="50" alt="next"/>
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
 		</div>
 	
 		<div id="cashier">
