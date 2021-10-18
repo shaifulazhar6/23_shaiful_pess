@@ -182,8 +182,33 @@ $(
 		newClient();
 		makeExitDroppable();
 		makeCashierDroppable();
+		showPage("splash");
 	}
 );
+	
+	function showPage(id) {
+		hideAllPages();
+		var page = $("#" + id);
+		var tweenEnd = {
+			opacity: 1.0
+		};
+		page.animate(tweenEnd, 1000);
+		page.show();
+	}
+	
+	function hideAllPages() {
+		var pages = $(".page-panel");
+		pages.each(function() {
+			var currentPage = $(this);
+			var hideStyle = {
+				opacity: 0.0,
+				visibility: "visible"
+			};
+			currentPage.css(hideStyle);
+			currentPage.hide();
+		});
+	}
+	
 $("document").ready(function(e) {
 	newClient();
 });

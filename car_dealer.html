@@ -24,13 +24,13 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 		  <li class="nav-item active">
-			<a class="nav-link" href="#">Play</a>
+			<a class="nav-link" href="#" onclick="showPage('splash')">Play</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="#">About</a>
+			<a class="nav-link" href="#" onclick="showPage('about')">About</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="#">Credits</a>
+			<a class="nav-link" href="#" onclick="showPage('credits')">Credits</a>
 		  </li>
 		   <li class="nav-item">
 			<a class="nav-link" href="#">Help</a>
@@ -39,9 +39,16 @@
 	  </div>
 	</nav>
 		<div id="app">
-			Main App Container
-		</div>
-	<div id="salon">
+			<div class="page-panel" id="splash">
+				<div id="logo">
+					Your Logo
+				</div>
+				<div class="game-button" onclick="showPage('play')">
+					START GAME
+				</div>
+			</div>
+			<div class="page-panel" id="play">
+				<div id="salon">
     	<div id="clients_queue">
         	clients queue
         </div>
@@ -110,6 +117,18 @@
 				
             </div>
         </div>
+				<div id="dialog">
+		<p>Do you want to make payment?</p>
+    </div>
+			</div>
+			<div class="page-panel" id="about">
+				About Page
+			</div>
+			<div class="page-panel" id="credits">
+				Credits Page
+			</div>
+		</div>
+	
 		<div id="cashier">
 		<h4>cashier</h4>
 		<div id="cashier_img_holder"><img src="images/cashier.jpg"></div>
@@ -125,8 +144,6 @@
                 <li id="amount">€ 120.000,00</li>
             </ul>    
         </div>
-	<div id="dialog">
-		<p>Do you want to make payment?</p>
-    </div>
+	
 </body>
 </html>
