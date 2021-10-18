@@ -94,6 +94,7 @@ function newClient(){
 	}
 	
 	function removeBox(element,moveToTop) {
+		element.css('z-index', 3000);
 		var option = {top:moveToTop,};
 		element.animate(option)
 			.fadeOut(function() {
@@ -132,7 +133,7 @@ function newClient(){
 						cars_sold += 1;
 						amount += calcost(dragClient);
 						update();
-						removeBox(dragClient, -120);
+						removeBox(dragClient, -235);
 						$( this ).dialog( "close" );
 					},
 				
