@@ -88,6 +88,7 @@ function newClient(){
 				$dragBox.css(removeMarginStyle);
 				count--;
 				$dragBox.addClass('selected');
+				next_qns();
 				var dialogOption = { scrolling: 'no' };
 				$.fancybox.open('#mcq',dialogOption);
 			}
@@ -239,6 +240,72 @@ $(
 			currentPage.css(hideStyle);
 			currentPage.hide();
 		});
+	}
+	
+	function next_qns() {
+		var current = questions[qnsIndex];
+		var questionTitle = $("questionTitle");
+		questionTitle.html((qnsIndex+1) + ". " + current.qns);
+		
+		var opt A = current.choices[0];
+		var opt A_Box = $("#optionA");
+		optA_Box.html(optA.title);
+		
+		var opt B = current.choices[1];
+		var opt B_Box = $("#optionB");
+		optB_Box.html(optB.title);
+		
+		var opt C = current.choices[2];
+		var opt C_Box = $("#optionC");
+		optC_Box.html(optC.title);
+		
+		var opt D = current.choices[3];
+		var opt D_Box = $("#optionD");
+		optD_Box.html(optD.title);
+		
+		var optA = $("#optionA");
+		var optB = $("#optionB");
+		var optC = $("#optionC");
+		var optD = $("#optionD");
+		
+		optA.css("background-color","palegreen");
+		optB.css("background-color","palegreen");
+		optC.css("background-color","palegreen");
+		optD.css("background-color","palegreen");
+		qnsIndex++;
+	}
+	else {
+		qnsIndex = 0;
+		var totalScore = 0;
+		
+		for(var i=0;i<selections.length;i++) {
+			var selection = selections[i];
+			var question = null;
+			
+			for(var h=0;h<questions.length;h++) {
+				var q = questions[h];
+				if(q.no == selections.qnsNo) {
+					question = q;
+					break;
+				}
+			}
+			if(selection.selected == question.correctAns) {
+				totalScore += parseInt.question.points);
+			}
+		}
+		var totalMarks = 0;
+		for(var h=0;h<questions.length;h++) {
+			var q = questions[h];
+			totalMarks+=parseInt(q.points);
+		}
+		var percScore = (totalScore / totalMarks) * 100;
+		var failed = true;
+		
+		if(percScore > 50)
+		{
+			failed = false;
+		}
+		alert("Fail?: " + failed + " Result:" + totalScore + "/" + totalMarks);
 	}
 	
 $("document").ready(function(e) {
