@@ -88,6 +88,8 @@ function newClient(){
 				$dragBox.css(removeMarginStyle);
 				count--;
 				$dragBox.addClass('selected');
+				
+				currentClient = $dragBox;
 				next_qns();
 				var dialogOption = { scrolling: 'no' };
 				$.fancybox.open('#mcq',dialogOption);
@@ -166,12 +168,12 @@ function newClient(){
 						cars_sold += 1;
 						amount += calcost(dragClient);
 						update();
-						removeBox(dragClient, -235);
+						removeBox(dragClient, "-=210");
 						$( this ).dialog( "close" );
 					},
 				
 				"No and Exit": function() {
-					removeBox(dragClient, -250);
+					removeBox(dragClient, "-=210");
 					$( this ).dialog( "close" );
 				}
 			},
@@ -306,7 +308,75 @@ $(
 			failed = false;
 		}
 		alert("Fail?: " + failed + " Result:" + totalScore + "/" + totalMarks);
-	}
+		
+		var questionPanel = $("#question-panel");
+		questionPanel.css("display","none");
+		
+		var resultPanel = $("#result-panel");
+		resultPanel.css("display","block");
+		
+		var scoreBox = $("#totalScore");
+		scoreBox.html("Score:" + totalScore + "/" totalMarks);
+		
+		var result = "";
+		if(failed == true)
+			{
+				result = '<img src="images/tenor.gif" width="250" height="200" alt="ex"/>';
+			}
+		else {
+			result = '<img src="images/excellent.png" width="250" height="200" alt="ex"/></center>Excellent!';
+		}
+		var myresult = $("#myresult");
+		myresult.css("display","block");
+		myresult.html(result);
+		
+		var closeResultButton = $("#closeResultButton");
+		closeResultButton.click(function() {
+			$.fancybox.close();
+			selections = [];
+			
+			questionPanel.css("display","block");
+			resultPanel.css("display","none");
+			
+			var clientX = currentClient.offset().left;
+			var clientY = currentClient.offset().top;
+			
+			if(failed == true) {
+				var exit = $("#exit_img_holder");
+				var exitX = exit.offset().left;
+				var exitY = exit.offset().top;
+				
+				var diffX = exitX - clientX;
+				var diffY = exitY - clientY;
+				
+				currentClient.css('zIndex',3000)
+				currentClient.animate( {
+					left: "+=" + diffX,
+					top: "+=" + diffY }, 1000).fadeOut(2000,function() { });
+					count--;
+					newClient();
+				}
+		}
+			else {
+				var cashier = $("#cashier_img_holder");
+				var cashierX = cashier.offset().left;
+				var cashierY = cashier.offset().top;
+				
+				var diffX = cashierX - clientX;
+				var diffY = cashierY - clientY;
+		
+				currentClient.css("zIndex",3000);
+				currentClient.animate(
+					{
+						left:"+=" + diffX,
+						top: "+=" + diffY,
+					},
+					1000, function() {
+						showCashierDialog(currentClient);
+					}
+					closeResultButton.unbind();
+					});
+								
 	
 $("document").ready(function(e) {
 	newClient();
